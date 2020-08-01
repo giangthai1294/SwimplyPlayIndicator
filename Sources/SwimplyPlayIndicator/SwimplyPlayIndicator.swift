@@ -68,7 +68,7 @@ public struct SwimplyPlayIndicator: View {
         }
         .opacity(opacity)
         .animation(.linear)
-        .frame(width: 18, height: 18)
+        .frame(idealWidth: 18, idealHeight: 18)
     }
 }
 
@@ -85,7 +85,6 @@ private extension SwimplyPlayIndicator {
         func path(in rect: CGRect) -> Path {
             let cornerRadius = style == .legacy ? 0 : (rect.width / 2)
             let height = max(rect.width, maxValue * rect.height)
-
             let lineRect = CGRect(x: 0, y: rect.maxY - height, width: rect.width, height: height)
             return Path(roundedRect: lineRect, cornerRadius: cornerRadius)
         }
