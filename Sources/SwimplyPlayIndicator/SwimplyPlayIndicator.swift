@@ -38,8 +38,8 @@ public struct SwimplyPlayIndicator: View {
     }
 
     private var animationValues: [AnimationValue] {
-        let valueRange: ClosedRange<CGFloat> = (0.2 ... 1.0)
-        let speedRange: ClosedRange<Double> = (0.7 ... 1.2)
+        let valueRange: ClosedRange<CGFloat> = (0.7 ... 1.0)
+        let speedRange: ClosedRange<Double> = (0.6 ... 1.2)
         let animations: [Animation] = [.easeIn, .easeOut, .easeInOut, .linear]
         let values = (0 ..< lineCount).compactMap { (id) -> AnimationValue? in
             guard let animation = animations.randomElement() else { return nil }
