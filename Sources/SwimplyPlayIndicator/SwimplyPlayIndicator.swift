@@ -58,17 +58,25 @@ public struct SwimplyPlayIndicator: View {
 
     public var body: some View {
         GeometryReader { reader in
-            HStack(alignment: .center, spacing: 1) {
+            HStack(alignment: .center, spacing: 2) {
                 ForEach(self.animationValues) { value in
-                    LineView(maxValue: state == .play ? value.maxValue : minimalValue, style: style)
-                        .frame(width: ceil(reader.size.width / CGFloat(lineCount)))
-                        .animation(state == .play ? value.animation.repeatForever() : Animation.easeOut(duration: 0.3))
-                }
+                    LineView(maxValue: state == .play && animating ? value.maxValue : minimalValue, style: style)
+                        .frame(width: ceil(reader.size.width / CGFloat(lineCount) / 1.5))
+                        .animation(lineAnimation(value))
+                }.frame(alignment: /*@START_MENU_TOKEN@*/ .center/*@END_MENU_TOKEN@*/)
             }
         }
         .opacity(opacity)
         .animation(.linear)
         .frame(idealWidth: 18, idealHeight: 18)
+        .onAppear {
+            animating = true
+        }
+    }
+
+    private func lineAnimation(_ value: AnimationValue) -> Animation? {
+        guard animating else { return nil }
+        return state == .play ? value.animation.repeatForever() : Animation.easeOut(duration: 0.3)
     }
 }
 
