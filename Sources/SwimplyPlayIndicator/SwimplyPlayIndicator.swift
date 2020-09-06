@@ -69,6 +69,7 @@ public struct SwimplyPlayIndicator: View {
         .opacity(opacity)
         .animation(.linear)
         .frame(idealWidth: 18, idealHeight: 18)
+        .drawingGroup()
         .onAppear {
             animating = true
         }

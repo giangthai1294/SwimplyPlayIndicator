@@ -18,6 +18,7 @@ struct ContentView: View {
             }
 
             SwimplyPlayIndicator(state: self.$state, lineColor: .white)
+                .fixedSize()
         }.padding()
     }
 }
